@@ -2,32 +2,17 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-void ToUp(char *p);
-bool is_isogram(const char *phrase[]) {
 
-  // strupr(phrase);
-
-  // unsigned int x = strlen(phrase);
-  extern size_t strlen(const char *phrase) ToUp(phrase);
+bool is_isogram(const char phrase[]) {
   if (phrase == 0) {
     return false;
   }
-  for (unsigned int i = 0; i < x; i++) {
-    for (unsigned int j = i + 1; j < x; j++) {
-      if ((isalpha(phrase[i])) && (isalpha(phrase[j]))) {
-        // if ((phrase[i] == phrase[j]) || (phrase[i] == toupper(phrase[j]))) {
-        if (phrase[i] == phrase[j]) {
-          return false;
-        }
+  for (int i = 0; phrase[i] != '\0'; i++) {
+    for (int j = i + 1; phrase[j] != '\0'; j++) {
+      if (isalpha(phrase[j]) && tolower(phrase[j]) == tolower(phrase[i])) {
+        return false;
       }
     }
   }
-  // }
   return true;
-}
-void ToUp(char *p) {
-  while (*p) {
-    *p = toupper(*p);
-    p++;
-  }
 }
